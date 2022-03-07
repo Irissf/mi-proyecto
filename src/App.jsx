@@ -1,6 +1,7 @@
 //Podemos poner js o jsx, autocompleta mejor con jsx
 import React from 'react'
 import Frutas from './components/Frutas';
+import PropsFrutas from './components/PropsFrutas';
 
 const App = () => {
 
@@ -8,7 +9,8 @@ const App = () => {
 
     const user = true;
 
-    
+    //para las props
+    const frutas = ["manzana", "plátano", "naranja", "limón"]
 
     //funciones y eventos
     const funcionClick = (nombre) => {
@@ -28,6 +30,9 @@ const App = () => {
             <Frutas/>
             <Frutas/>
             <Frutas/>
+
+            {/* Le mandamos la propiedad(prop) */}
+            <PropsFrutas frutasApp={frutas}></PropsFrutas>
 
             {/* eventos */}
             <button onClick={funcionClick("Iris")}>Dame click</button>
