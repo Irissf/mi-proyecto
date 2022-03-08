@@ -1,6 +1,7 @@
 //Podemos poner js o jsx, autocompleta mejor con jsx
 import React from 'react'
 import Frutas from './components/Frutas';
+import HookContador from './components/HookContador';
 import PropsFrutas from './components/PropsFrutas';
 
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
 
             {/* eventos */}
             <button onClick={funcionClick("Iris")}>Dame click</button>
+        
+            {/* Hooks */}
+            <HookContador></HookContador>
         </>
         //si no queremos usar div como contenedor podemos usar <React.Fragment> o llaves vacias <></> que seria un fragment
     )
