@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: #BB9981;
+    padding: 10px;
+}
+
+.web{
+    display:flex;
+    gap: 10px;
+}
+
+.container{
+    background-color:#C5D8A4;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
