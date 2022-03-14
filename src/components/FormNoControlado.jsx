@@ -8,13 +8,36 @@ const FormNoControlado = () => {
   const handleSubmit = (e) => {
       //evitar que se recarge la pagina al mandar el formulario
       e.preventDefault();
-      console.log(e);
+      
+      //cogemos los datos del formulario
+      const datos = new FormData(formulario.current);
+
+      //los ... son spread operator
+      /* spread operator => es un operador que simplifica la recogida de valores en una estructura de datos
+      Convierte un array o un objeto en el conjunto de valores que contiene. */
+      console.log(...datos.entries());
+
+      //object for entries
+      const objetoDatos = Object.fromEntries([...datos.entries()]);
+      console.log(objetoDatos);
+
+      //hacemos para repasar variables de cada parte del objeto
+      const{todoName,todoDescripcion,todoEstado} = objetoDatos;
+
+      //como todoDescripcion.trim() === ""
+      if (!todoDescripcion.trim() || !todoName.trim()) {
+        console.log("está vacio el texto")
+        return //para que salga ya, nos ahorramos el else
+      }
+
+      console.log("pasó validaciones")
   }
 
 
   return (
     <div>
         <h2>Formularios no Controlados</h2>
+
         {/* Evitaremos los getElementByID o los QuerySelector y usaremos
         en las contadas ocasiones que las necesitemos, las referencias */}
         <form ref={formulario} onSubmit={handleSubmit}>
@@ -26,6 +49,7 @@ const FormNoControlado = () => {
             </select>
             <button type='submit'>Agregar</button>
         </form>
+
     </div>
   )
 }
