@@ -7,17 +7,23 @@ const FormularioControlado = () => {
   const [todo,setTodo] = useState({
     todoName:'',
     todoDescripcion:'',
-    todoEstado:'pendiente'
+    todoEstado:'pendiente',
+    todoCheck:false
   });
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(todo);
+
+    const {todoName, todoDescripcion} = todo;
+
+    console.log(todoName + " : " + todoDescripcion);
   }
 
   const handelChange = (e) => {
     console.log(e.target.name);
     console.log(e.target.value);
+    console.log(e.target.type);
+
 
     /*con ...todo le decimos que nos
         traiga todo lo que tiene todo, y si todoName cambia,q ue agrege el nuevo valor
@@ -25,14 +31,16 @@ const FormularioControlado = () => {
         todo lo que tenemos en el todo  */
     // setTodo({
     //   ...todo,
-    //   //si no ponemos entre [] da error, pues no se puede poner .en los nombres
+    //   //si no ponemos entre [] da error, asi le pasamos el valor de dentro, y no el nombre
+    //    como tal.
     //   [e.target.name]:e.target.value
     // })
 
     //Otra manera, aqui no podemos poner los corchetes 
     setTodo((old) => ({
       ...old,
-      [e.target.name]:e.target.value
+      //debemos controlar si es un checkbox con un if
+      [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
     }));
   }
 
@@ -53,6 +61,13 @@ const FormularioControlado = () => {
                 <option value="pendiente">Pendiente</option>
                 <option value="completada">Completada</option>
             </select>
+            {/* El que suele dar más problemas es del tipo checkbox ya que no le podemos
+            pasar el value, el cambio se registra en el checked*/}
+            <div>
+              <input type="checkbox" name='todoCheck' 
+              onChange={handelChange} value={todo.todoCheck}></input>
+              <label>Prueba check</label>
+            </div>
             <button type='submit'>Agregar</button>
         </form>
     </>
